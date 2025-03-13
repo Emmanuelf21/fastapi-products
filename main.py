@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-from indb import generate_products
 from product import Product
 from json_db import JsonDB
 
