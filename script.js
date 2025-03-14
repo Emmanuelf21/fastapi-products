@@ -9,8 +9,8 @@ async function getData() {
         
         
         gerarCard(data.products);
-        console.log(dataCar.carrinho);
-        if(dataCar){
+        
+        if(data.products){
             gerarCarrinho(dataCar)
         }
 

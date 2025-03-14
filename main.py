@@ -28,8 +28,9 @@ def create_product(product: Product):
 
 @app.get("/carrinho")
 def get_carrinho():
-    carinho = carrinhoDB.read()
-    return carinho
+    carrinho = carrinhoDB.read()
+    print(carrinho)
+    return carrinho
 
 
 @app.post("/carrinho")
