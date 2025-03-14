@@ -1,10 +1,12 @@
 from fastapi import FastAPI
 from product import Product
+from carrinho import Carrinho
 from json_db import JsonDB
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 productDB = JsonDB(path='./data/products.json')
+carrinhoDB = JsonDB(path='./data/carrinho.json')
 
 app.add_middleware(
     CORSMiddleware,
@@ -24,3 +26,13 @@ def create_product(product: Product):
     productDB.insert(product)
     return {"status": 'inserted'}
 
+@app.get("/carrinho")
+def get_carrinho():
+    carinho = carrinhoDB.read()
+    return carinho
+
+
+@app.post("/carrinho")
+def create_carrinho(carrinho: Carrinho):
+    carrinhoDB.insert(carrinho)
+    return {"status": 'inserido no carrinho'}

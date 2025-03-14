@@ -10,7 +10,7 @@ html, body{
 }
 
 header{
-    width: 90%;
+    width: 80%;
     padding: 2rem;
     margin: 1rem auto;
     background: #333;
@@ -34,7 +34,7 @@ nav li{
 }
 
 .banner{
-    width: 85%;
+    width: 75%;
     margin: auto;
 }
 
@@ -43,7 +43,7 @@ nav li{
 }
 
 .produtos{
-    width: 85%;
+    width: 75%;
     margin: 1rem auto;
     background: white;
     padding: 4rem 3rem;
@@ -75,4 +75,35 @@ nav li{
 .produtos .card button:hover{
     background:rgb(44, 100, 255);
     cursor: pointer;
+}
+
+.carrinho{
+     width: 10%;
+     background: white;
+     height: 70%;
+     position: absolute;
+     right: 0;
+     top: 15%;
+     overflow: scroll;
+     display: flex;
+     flex-direction: column;
+     gap: 30px;
+}
+
+.oculto{
+    display: none;
+}
+
+.visivel{
+    display: block;
+}
+
+.mini-card{
+    width: 100%;
+    height: 100px;
+    position: relative;
+}
+
+.mini-card img{
+    width: 100px;
 }
