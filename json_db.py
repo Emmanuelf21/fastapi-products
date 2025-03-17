@@ -25,3 +25,10 @@ class JsonDB(BaseModel):
         f = open(self.path, 'w') #pega o path dos produtos com permição de escrita
         f.write(json.dumps(data)) 
         f.close
+    
+    def remover(self, carrinho:Carrinho):
+        data = self.read()
+        data['carrinho'].remove(carrinho.dict())
+        f = open(self.path,'w')
+        f.write(json.dumps(data))
+        f.close

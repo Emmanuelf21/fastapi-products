@@ -5,3 +5,4 @@ class Carrinho(BaseModel):
     name:str
     price:float
     image:str
+    qtd: int

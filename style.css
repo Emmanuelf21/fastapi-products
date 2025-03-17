@@ -85,9 +85,9 @@ nav li{
      right: 0;
      top: 15%;
      overflow: scroll;
-     display: flex;
      flex-direction: column;
      gap: 30px;
+    padding: 2rem 0 0 2rem;
 }
 
 .oculto{
@@ -95,15 +95,35 @@ nav li{
 }
 
 .visivel{
-    display: block;
+    display: flex;
 }
 
 .mini-card{
     width: 100%;
-    height: 100px;
+    height: fit-content;
     position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    align-items: center;
 }
 
 .mini-card img{
     width: 100px;
+}
+
+.mini-card>div{
+    align-items: center;
+    width: 120px;
+}
+
+.mini-card>div button{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    background: #eee;
+    text-align: center;
 }

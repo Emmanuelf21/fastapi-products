@@ -37,3 +37,11 @@ def get_carrinho():
 def create_carrinho(carrinho: Carrinho):
     carrinhoDB.insert(carrinho)
     return {"status": 'inserido no carrinho'}
+
+@app.put("/carrinho")
+def att_carrinho(carrinho: Carrinho):
+    carrinhoDB.read()
+    
+@app.delete("/carrinho/{id}")
+def delete_carrinho(carrinho: Carrinho):
+    pass

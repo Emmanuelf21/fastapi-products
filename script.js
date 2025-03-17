@@ -9,9 +9,9 @@ async function getData() {
         
         
         gerarCard(data.products);
-        
-        if(data.products){
-            gerarCarrinho(dataCar)
+        console.log(dataCar.carrinho);
+        if (Array.isArray(dataCar?.carrinho) && dataCar.carrinho.length > 0) {
+            gerarCarrinho(dataCar);
         }
 
     } catch (error) {
@@ -31,15 +31,22 @@ async function gerarCard(produtos) {
 }
 
 async function gerarCarrinho(dataCar) {
+    console.log('aaa');
     const htmlCarrinho = document.querySelector("#carrinho");
     htmlCarrinho.classList.remove('oculto');
     htmlCarrinho.classList.add('visivel');
-    for (const produto of dataCar.carrinho) {
-        htmlCarrinho.innerHTML+=`<span id=${produto.id} class="mini-card">
-        <img src=${produto.image} alt="">
-        <h3>${produto.name}</h3>
-        <p>${produto.price}</p>
-    </span>`
+    for (const produtoCar of dataCar.carrinho) {
+        htmlCarrinho.innerHTML+=`
+        <span id=${produtoCar.id} class="mini-card">
+            <img src=${produtoCar.image} alt="">
+            <h3>${produtoCar.name}</h3>
+            <p>R$ ${produtoCar.price}</p>
+            <div class='flex'>
+                <button id=${produtoCar.id} class='menos'>-</button>
+                <p>${produtoCar.qtd}</p>
+                <button id=${produtoCar.id} class='mais'>+</button>
+            </div>
+        </span>`
     }
 }
 
