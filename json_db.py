@@ -19,9 +19,11 @@ class JsonDB(BaseModel):
         f.write(json.dumps(data)) 
         f.close
     
-    def insert(self, carrinho:Carrinho):
+    def insert_carrinho(self, product:Product):
         data = self.read()
-        data['carrinho'].append(carrinho.dict())
+        newProduct = product.dict()
+        newProduct['qtd']=1
+        data['carrinho'].append(newProduct)
         f = open(self.path, 'w') #pega o path dos produtos com permição de escrita
         f.write(json.dumps(data)) 
         f.close
