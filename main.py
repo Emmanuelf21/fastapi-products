@@ -38,10 +38,16 @@ def create_carrinho(carrinho: Carrinho):
     carrinhoDB.insert(carrinho)
     return {"status": 'inserido no carrinho'}
 
-@app.put("/carrinho")
+@app.put("/carrinho/{id}")
 def att_carrinho(carrinho: Carrinho):
     carrinhoDB.read()
     
 @app.delete("/carrinho/{id}")
-def delete_carrinho(carrinho: Carrinho):
-    pass
+def delete_carrinho(id:int):
+    for car in carrinhoDB:
+        if car['id'] == id:
+            carrinhoDB.remover(car)
+            return {"status": 'produto removido'}
+        else:
+             return {"status": 'produto não encontrado'}
+    

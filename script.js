@@ -6,11 +6,10 @@ async function getData() {
 
         const responseCar = await fetch("http://127.0.0.1:8000/carrinho");
         const dataCar = await responseCar.json()
-        
-        
+
         gerarCard(data.products);
-        console.log(dataCar.carrinho);
-        if (Array.isArray(dataCar?.carrinho) && dataCar.carrinho.length > 0) {
+
+        if(!isEmpty(dataCar)){
             gerarCarrinho(dataCar);
         }
 
@@ -31,10 +30,11 @@ async function gerarCard(produtos) {
 }
 
 async function gerarCarrinho(dataCar) {
-    console.log('aaa');
+    
     const htmlCarrinho = document.querySelector("#carrinho");
-    htmlCarrinho.classList.remove('oculto');
-    htmlCarrinho.classList.add('visivel');
+    htmlCarrinho.innerHTML = '';
+    visibilidadeCarrinho(htmlCarrinho, dataCar);
+    
     for (const produtoCar of dataCar.carrinho) {
         htmlCarrinho.innerHTML+=`
         <span id=${produtoCar.id} class="mini-card">
@@ -47,6 +47,28 @@ async function gerarCarrinho(dataCar) {
                 <button id=${produtoCar.id} class='mais'>+</button>
             </div>
         </span>`
+    }
+}
+
+async function isEmpty(dataCar) {
+    if (Array.isArray(dataCar?.carrinho) && dataCar.carrinho.length > 0) {
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+
+async function visibilidadeCarrinho(htmlCarrinho,dataCar) {
+    if(!isEmpty(dataCar) && htmlCarrinho.classList.contains('oculto'))
+    {
+        htmlCarrinho.classList.remove('oculto');
+        htmlCarrinho.classList.add('visivel');
+    }
+    else if(htmlCarrinho.classList.contains('visivel'))
+    {
+        htmlCarrinho.classList.add('oculto');
+        htmlCarrinho.classList.remove('visivel');
     }
 }
 
