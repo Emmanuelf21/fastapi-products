@@ -14,6 +14,11 @@ async function getData() {
         btnsCard.forEach(btn => {
             btn.addEventListener('click', () =>{adicionarCarrinho(btn.getAttribute('id'), data.products,dataCar)});
         });
+
+        const btnsMenosQtd = document.querySelectorAll(".menos");
+        btnsMenosQtd.forEach(btn => {
+            btn.addEventListener('click', () =>{alterarQtdProduto(btn.getAttribute('id'), dataCar.carrinho, '-')});
+        });
         
     } catch (error) {
         console.error("Erro ao buscar dados:", error);
@@ -76,27 +81,63 @@ async function visibilidadeCarrinho(htmlCarrinho,dataCar) {
 }
 
 async function adicionarCarrinho(id, produtos, dataCar) {
-    for(const prod of produtos){
-        if(prod['id']==id){
-            const response = await fetch("http://127.0.0.1:8000/carrinho", {
-                method: 'POST',
+    const existeNoCarrinho = verificarCarrinho(id,dataCar);
+    if(!existeNoCarrinho){
+        for(const prod of produtos){
+            if(prod['id']==id){
+                const response = await fetch("http://127.0.0.1:8000/carrinho", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(prod)
+                });
+                const data = await response.json();
+                console.log(data);
+            }
+        }
+        gerarCarrinho(dataCar);
+    }
+}
+
+function verificarCarrinho(id, dataCar){
+    const prod = dataCar.carrinho.find(prod => prod.id == id)
+    if(prod){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+async function alterarQtdProduto(id,dataCar,op) {
+    try{
+        console.log('entrou na function');
+        const prod = dataCar.find(prod => prod.id == id);
+        
+        if(prod.qtd==1 && op=='-'){
+            console.log('entrou no if');
+
+            const response = await fetch(`http://127.0.0.1:8000/carrinho/${id}`,{
+                method: 'DELETE',  
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(prod)
-            });
+            })
             const data = await response.json();
             console.log(data);
         }
-    }
-    gerarCarrinho(dataCar);
-}
-
-async function alterarQtdProduto(id, dataCar) {
-    for(const prod of dataCar.carrinho){
-        if(prod['id']==id && prod['qtd']){
+        else if(op=='-'){
 
         }
+        else if(op=='+'){
+
+        }
+        
+    }
+    catch{
+        console.log('Falha ao excluir');
     }
 }
 

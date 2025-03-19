@@ -28,9 +28,9 @@ class JsonDB(BaseModel):
         f.write(json.dumps(data)) 
         f.close
     
-    def remover(self, carrinho:Carrinho):
+    def remover(self, produto: Carrinho):
         data = self.read()
-        data['carrinho'].remove(carrinho.dict())
+        data['carrinho'].remove(produto.dict())
         f = open(self.path,'w')
         f.write(json.dumps(data))
         f.close

@@ -47,11 +47,8 @@ def create_carrinho(newProd: Product):
 #             return {'status': 'falha ao inserir no carrinho'}    
 
 @app.delete("/carrinho/{id}")
-def delete_carrinho(id:int):
-    for produto in carrinhoDB:
-        if produto['id'] == id:
-            carrinhoDB.remover(produto)
-            return {"status": 'produto removido'}
-        else:
-             return {"status": 'produto não encontrado'}
+def delete_carrinho(produto: Carrinho):
+    carrinhoDB.remover(produto)
+    return {"status": 'produto removido'}
+             
     
