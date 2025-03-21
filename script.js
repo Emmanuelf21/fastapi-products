@@ -33,7 +33,7 @@ async function gerarCard(produtos) {
         document.querySelector(".produtos").innerHTML+=`<span id=${produto.id} class="card">
         <img src=${produto.image} alt="">
         <h3>${produto.name}</h3>
-        <p>${produto.price}</p>
+        <p>R$ ${produto.price}</p>
         <button id=${produto.id} class="btn-card">Adicionar ao carrinho</button>
     </span>`
     }  
