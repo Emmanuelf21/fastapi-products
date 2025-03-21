@@ -19,7 +19,10 @@ async function getData() {
         btnsMenosQtd.forEach(btn => {
             btn.addEventListener('click', () =>{alterarQtdProduto(btn.getAttribute('id'), dataCar.carrinho, '-')});
         });
-        
+        const btnsMaisQtd = document.querySelectorAll(".mais");
+        btnsMaisQtd.forEach(btn => {
+            btn.addEventListener('click', () =>{alterarQtdProduto(btn.getAttribute('id'), dataCar.carrinho, '+')});
+        });
     } catch (error) {
         console.error("Erro ao buscar dados:", error);
     }
@@ -116,8 +119,6 @@ async function alterarQtdProduto(id,dataCar,op) {
         const prod = dataCar.find(prod => prod.id == id);
         
         if(prod.qtd==1 && op=='-'){
-            console.log('entrou no if');
-
             const response = await fetch(`http://127.0.0.1:8000/carrinho/${id}`,{
                 method: 'DELETE',  
                 headers: {
@@ -128,11 +129,19 @@ async function alterarQtdProduto(id,dataCar,op) {
             const data = await response.json();
             console.log(data);
         }
-        else if(op=='-'){
-
-        }
-        else if(op=='+'){
-
+        else if(op=='-' || op=='+'){
+            if(op=='-') prod.qtd-=1;
+            else prod.qtd+=1;
+            
+            const response = await fetch(`http://127.0.0.1:8000/carrinho/${id}`,{
+                method: 'PUT',  
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(prod)
+            })
+            const data = await response.json();
+            // console.log(data);
         }
         
     }

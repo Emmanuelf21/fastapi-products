@@ -9,6 +9,7 @@ class JsonDB(BaseModel):
     def read(self):
         f = open(self.path)
         data = json.loads(f.read())
+        
         f.close
         return data
     
@@ -27,6 +28,19 @@ class JsonDB(BaseModel):
         f = open(self.path, 'w') #pega o path dos produtos com permição de escrita
         f.write(json.dumps(data)) 
         f.close
+    
+    def att_carrinho(self,product:Carrinho):
+        data = self.read()
+        attProduct = product.dict()
+        for prod in data['carrinho']:
+            if prod['id']==attProduct['id']:
+                pos = data['carrinho'].index(prod)
+        data['carrinho'].pop(pos)
+        data['carrinho'].insert(pos,attProduct)
+        f = open(self.path, 'w')
+        f.write(json.dumps(data))
+        f.close
+        
     
     def remover(self, produto: Carrinho):
         data = self.read()

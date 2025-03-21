@@ -36,19 +36,14 @@ def create_carrinho(newProd: Product):
     carrinhoDB.insert_carrinho(newProd)
     return {"status": 'inserido no carrinho'}
 
-#alterar para Patch
-# @app.put("/carrinho")
-# def att_carrinho(id:int):
-#     for product in productDB.read():
-#         if product['id'] == id:
-#             carrinhoDB.insert(product)
-#             return {"status": 'inserido no carrinho'}
-#         else:
-#             return {'status': 'falha ao inserir no carrinho'}    
+
+@app.put("/carrinho/{id}")
+def att_carrinho(attProd: Carrinho):
+    carrinhoDB.att_carrinho(attProd)
+    return {"status": 'Produto atualizado'}
+
 
 @app.delete("/carrinho/{id}")
 def delete_carrinho(produto: Carrinho):
     carrinhoDB.remover(produto)
     return {"status": 'produto removido'}
-             
-    
