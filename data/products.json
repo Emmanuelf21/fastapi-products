@@ -1,0 +1,18 @@
+{
+    "products": [{
+        "id": 1,
+        "name": "Notebook semsung",
+        "price": 2400.0,
+        "image": "https://cdn.shoppub.io/cdn-cgi/image/w=1000,h=1000,q=80,f=auto/oficinadosbits/media/uploads/produtos/foto/vgdfmyic/file.png"
+    }, {
+        "id": 2,
+        "name": "Notebook gl",
+        "price": 2800.0,
+        "image": "https://www.lg.com/content/dam/channel/wcms/br/images/computadores/16z90p-g_bh71p2_essp_br_c/gallery/zoom-01.jpg"
+    }, {
+        "id": 3,
+        "name": "Notebook Susa",
+        "price": 5700.0,
+        "image": "https://gazin-images.gazin.com.br/ws9k04GEor2zV84jIZOZmUBxwT4=/1920x/filters:format(webp):quality(75)/https://gazin-images.gazin.com.br/yqRwRj6KRzegK5trr9_C214ULVQ=/filters:format(webp):quality(75)/https://gazin-marketplace.s3.amazonaws.com/midias/imagens/2024/06/notebook-asus-vivobook-go-15-i3-w11-home-4gb-256gb-ssd-156-e1504ga-nj441w-092406282108.jpg"
+    }]
+}
