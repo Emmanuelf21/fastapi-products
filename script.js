@@ -1,10 +1,10 @@
 
 async function getData() {
     try {
-        const response = await fetch("http://127.0.0.1:8000/products");
+        const response = await fetch("https://fastapi-teste1.onrender.com/products");
         const data = await response.json();
 
-        const responseCar = await fetch("http://127.0.0.1:8000/carrinho");
+        const responseCar = await fetch("https://fastapi-teste1.onrender.com/carrinho");
         const dataCar = await responseCar.json();
 
         gerarCard(data.products);
@@ -88,7 +88,7 @@ async function adicionarCarrinho(id, produtos, dataCar) {
     if(!existeNoCarrinho){
         for(const prod of produtos){
             if(prod['id']==id){
-                const response = await fetch("http://127.0.0.1:8000/carrinho", {
+                const response = await fetch("https://fastapi-teste1.onrender.com/carrinho", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -119,7 +119,7 @@ async function alterarQtdProduto(id,dataCar,op) {
         const prod = dataCar.find(prod => prod.id == id);
         
         if(prod.qtd==1 && op=='-'){
-            const response = await fetch(`http://127.0.0.1:8000/carrinho/${id}`,{
+            const response = await fetch(`https://fastapi-teste1.onrender.com/carrinho/${id}`,{
                 method: 'DELETE',  
                 headers: {
                     'Content-Type': 'application/json'
@@ -133,7 +133,7 @@ async function alterarQtdProduto(id,dataCar,op) {
             if(op=='-') prod.qtd-=1;
             else prod.qtd+=1;
             
-            const response = await fetch(`http://127.0.0.1:8000/carrinho/${id}`,{
+            const response = await fetch(`https://fastapi-teste1.onrender.com/carrinho/${id}`,{
                 method: 'PUT',  
                 headers: {
                     'Content-Type': 'application/json'
