@@ -13,23 +13,20 @@ async function getData() {
         const btnsCard = document.querySelectorAll(".btn-card");
         btnsCard.forEach(btn => {
             btn.addEventListener('click', () =>{
-                adicionarCarrinho(btn.getAttribute('id'), data.products,dataCar); 
-                refresh();
+                adicionarCarrinho(btn.getAttribute('id'), data.products,dataCar)
             });
         });
 
         const btnsMenosQtd = document.querySelectorAll(".menos");
         btnsMenosQtd.forEach(btn => {
             btn.addEventListener('click', () =>{
-                alterarQtdProduto(btn.getAttribute('id'), dataCar.carrinho, '-');
-                refresh();
+                alterarQtdProduto(btn.getAttribute('id'), dataCar.carrinho, '-')
             });
         });
         const btnsMaisQtd = document.querySelectorAll(".mais");
         btnsMaisQtd.forEach(btn => {
             btn.addEventListener('click', () =>{
-                alterarQtdProduto(btn.getAttribute('id'), dataCar.carrinho, '+');
-                refresh();
+                alterarQtdProduto(btn.getAttribute('id'), dataCar.carrinho, '+')
             });
         });
     } catch (error) {
@@ -108,7 +105,8 @@ async function adicionarCarrinho(id, produtos, dataCar) {
                 console.log(data);
             }
         }
-        gerarCarrinho(dataCar);
+        refresh();
+        // gerarCarrinho(dataCar);
     }
 }
 
@@ -152,7 +150,7 @@ async function alterarQtdProduto(id,dataCar,op) {
             const data = await response.json();
             // console.log(data);
         }
-        
+        refresh();
     }
     catch{
         console.log('Falha ao excluir');
