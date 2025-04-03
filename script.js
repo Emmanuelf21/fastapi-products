@@ -157,7 +157,7 @@ async function alterarQtdProduto(id,dataCar,op) {
     }
 }
 
-function refresh() {
+async function refresh() {
     setTimeout(() => {
         window.location.reload();
       }, 10);
