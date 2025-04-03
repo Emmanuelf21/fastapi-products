@@ -12,16 +12,25 @@ async function getData() {
 
         const btnsCard = document.querySelectorAll(".btn-card");
         btnsCard.forEach(btn => {
-            btn.addEventListener('click', () =>{adicionarCarrinho(btn.getAttribute('id'), data.products,dataCar)});
+            btn.addEventListener('click', () =>{
+                adicionarCarrinho(btn.getAttribute('id'), data.products,dataCar); 
+                refresh();
+            });
         });
 
         const btnsMenosQtd = document.querySelectorAll(".menos");
         btnsMenosQtd.forEach(btn => {
-            btn.addEventListener('click', () =>{alterarQtdProduto(btn.getAttribute('id'), dataCar.carrinho, '-')});
+            btn.addEventListener('click', () =>{
+                alterarQtdProduto(btn.getAttribute('id'), dataCar.carrinho, '-');
+                refresh();
+            });
         });
         const btnsMaisQtd = document.querySelectorAll(".mais");
         btnsMaisQtd.forEach(btn => {
-            btn.addEventListener('click', () =>{alterarQtdProduto(btn.getAttribute('id'), dataCar.carrinho, '+')});
+            btn.addEventListener('click', () =>{
+                alterarQtdProduto(btn.getAttribute('id'), dataCar.carrinho, '+');
+                refresh();
+            });
         });
     } catch (error) {
         console.error("Erro ao buscar dados:", error);
@@ -148,6 +157,12 @@ async function alterarQtdProduto(id,dataCar,op) {
     catch{
         console.log('Falha ao excluir');
     }
+}
+
+function refresh() {
+    setTimeout(() => {
+        window.location.reload();
+      }, 10);
 }
 
 getData();
